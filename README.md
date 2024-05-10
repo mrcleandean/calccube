@@ -12,7 +12,7 @@ CalcCube is a unique 3D calculator designed to offer an immersive interactive ca
 
 ```bash
 git clone https://github.com/mrcleandean/calccube.git
-cd CalcCube
+cd calccube
 npm install
 npm run dev
 
