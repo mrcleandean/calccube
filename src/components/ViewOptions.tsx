@@ -1,5 +1,5 @@
 import useCubeContext from "../hooks/useCubeContext";
-import { FC, useRef } from "react";
+import { useRef } from "react";
 import { Vector3 } from "three";
 import { useGSAP } from "@gsap/react";
 import gsap from "gsap";
