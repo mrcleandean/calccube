@@ -1,9 +1,10 @@
 import useCubeContext from "../hooks/useCubeContext";
-import { useRef } from "react";
+import { FC, useRef } from "react";
 import { Vector3 } from "three";
 import { useGSAP } from "@gsap/react";
 import gsap from "gsap";
 import { VIEW_1, VIEW_2, VIEW_3 } from "../constants";
+import Button from "./Button";
 
 export type ObjVectorType = {
     x: number;
@@ -40,12 +41,23 @@ const ViewOptions = () => {
     return (
         <div className="absolute top-3 left-3 flex justify-center items-start gap-3 flex-col z-[1]">
             <div className="flex gap-2 items-center justify-center select-none">
-                <button onClick={() => camAnim(VIEW_1)} className="bg-white border-none py-0.5 px-1.5 rounded-xl text-black cursor-pointer">View 1</button>
-                <button onClick={() => camAnim(VIEW_2)} className="bg-white border-none py-0.5 px-1.5 rounded-xl text-black cursor-pointer">View 2</button>
-                <button onClick={() => camAnim(VIEW_3)} className="bg-white border-none py-0.5 px-1.5 rounded-xl text-black cursor-pointer">View 3</button>
+                <Button
+                    onClick={() => camAnim(VIEW_1)}
+                    text='View 1'
+                />
+                <Button
+                    onClick={() => camAnim(VIEW_2)}
+                    text="View 2"
+                />
+                <Button
+                    onClick={() => camAnim(VIEW_3)}
+                    text="View 3"
+                />
             </div>
         </div>
     )
 }
+
+
 
 export default ViewOptions;

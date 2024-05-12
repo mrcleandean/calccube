@@ -6,6 +6,9 @@ export default {
   ],
   theme: {
     extend: {
+      animation: {
+        'calc-cube': 'spin 10s infinite',
+      },
       colors: {
         loader: "#11151c",
       }
