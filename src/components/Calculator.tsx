@@ -88,7 +88,6 @@ const Calculator = () => {
         const press = (e: KeyboardEvent) => {
             const node = nodeKeyMap[e.key]
             if (!node) return
-            console.log('test');
             animate(node)
             behaviour.runOperation(node, calc, setCalc)
         }

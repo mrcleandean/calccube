@@ -1,6 +1,6 @@
 import { ImSpinner2 } from "react-icons/im";
 import { AnimatePresence, motion } from 'framer-motion';
-import { Dispatch, SetStateAction } from "react";
+import { Dispatch, FC, SetStateAction } from "react";
 
 export type LoaderPropTypes = {
     loaded: boolean;
@@ -10,45 +10,14 @@ export type LoaderPropTypes = {
     subTitle?: string | null
 }
 
-const TitleSpan = ({ char, i, length }: { char: string, i: number, length: number }) => {
-    const animationDuration = 2 * 1.75;
-    const mergeFactor = 0.06 * 1.75;
-    const totalAnimationTime = length * animationDuration * mergeFactor;
-    return (
-        <>
-            {
-                char === ' '
-                    ? <div className="w-[3.2vw]" />
-                    : (
-                        <motion.span
-                            variants={{
-                                animate: {
-                                    scale: [1, 1.2, 0.95, 1],
-                                    rotate: [0, 2, -2, 0],
-                                    color: ['rgb(255, 255, 255)', 'rgb(191, 219, 254)', 'rgb(255, 255, 255)'],
-                                    transition: {
-                                        delay: i * animationDuration * mergeFactor,
-                                        duration: animationDuration,
-                                        ease: "linear",
-                                        repeat: Infinity,
-                                        repeatDelay: totalAnimationTime - animationDuration
-                                    }
-                                }
-                            }}
-                            animate="animate"
-                            className="select-none cursor-default"
-                        >
-                            {char}
-                        </motion.span>
-                    )
-            }
-        </>
-    )
+export type TitleSpanPropTypes = {
+    char: string,
+    i: number,
+    length: number
 }
 
-const Loader = ({ loaded, entered, setEntered, letters, subTitle = null }: LoaderPropTypes) => {
+const Loader: FC<LoaderPropTypes> = ({ loaded, entered, setEntered, letters, subTitle = null }) => {
     let adjustedLetterIndex = 0;
-
     return (
         <>
             <AnimatePresence>
@@ -119,6 +88,42 @@ const Loader = ({ loaded, entered, setEntered, letters, subTitle = null }: Loade
                     </motion.div>
                 )}
             </AnimatePresence>
+        </>
+    )
+}
+
+const TitleSpan: FC<TitleSpanPropTypes> = ({ char, i, length }) => {
+    const animationDuration = 2 * 1.75;
+    const mergeFactor = 0.06 * 1.75;
+    const totalAnimationTime = length * animationDuration * mergeFactor;
+    return (
+        <>
+            {
+                char === ' '
+                    ? <div className="w-[3.2vw]" />
+                    : (
+                        <motion.span
+                            variants={{
+                                animate: {
+                                    scale: [1, 1.2, 0.95, 1],
+                                    rotate: [0, 2, -2, 0],
+                                    color: ['rgb(255, 255, 255)', 'rgb(191, 219, 254)', 'rgb(255, 255, 255)'],
+                                    transition: {
+                                        delay: i * animationDuration * mergeFactor,
+                                        duration: animationDuration,
+                                        ease: "linear",
+                                        repeat: Infinity,
+                                        repeatDelay: totalAnimationTime - animationDuration
+                                    }
+                                }
+                            }}
+                            animate="animate"
+                            className="select-none cursor-default"
+                        >
+                            {char}
+                        </motion.span>
+                    )
+            }
         </>
     )
 }
