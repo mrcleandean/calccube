@@ -10,7 +10,7 @@ import { useThree } from "@react-three/fiber";
 import { KEY_MAPPINGS, VOLUME_MULTIPLIER } from "../constants";
 import glb from '../assets/calculator.glb';
 import keypress from '../assets/keypress.mp3';
-import bakedsym from "../assets/bakedsym.jpg";
+import withSymbols from "../assets/with-symbols.jpg";
 
 export type KeyMapKeysType = keyof typeof KEY_MAPPINGS;
 
@@ -33,7 +33,7 @@ const Calculator = () => {
     const { camera } = useThree();
     const { nodes, scene } = useGLTF(glb) as unknown as GLTFType;
 
-    const map = useTexture(bakedsym);
+    const map = useTexture(withSymbols);
     map.flipY = false;
 
     const behaviour = useMemo(() => new Behaviour(), []);
