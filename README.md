@@ -15,4 +15,8 @@ git clone https://github.com/mrcleandean/calccube.git
 cd calccube
 npm install
 npm run dev
+```
 
+## Snapshot
+
+![Snapshot](/public/demo.png?raw=true "Interactive 3D calculator")
