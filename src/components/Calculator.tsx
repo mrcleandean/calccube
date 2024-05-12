@@ -29,11 +29,10 @@ export type NodeKeyMapType = {
 
 const Calculator = () => {
     const { calc, setCalc, setCamera, gsapRef } = useCubeContext();
-
     const { contextSafe } = useGSAP({ scope: gsapRef });
-
     const { camera } = useThree();
     const { nodes, scene } = useGLTF(glb) as unknown as GLTFType;
+
     const map = useTexture(bakedsym);
     map.flipY = false;
 
@@ -64,13 +63,6 @@ const Calculator = () => {
         behaviour.runOperation(node, calc, setCalc)
     }
 
-    const press = ({ key }: { key: string }) => {
-        const node = nodeKeyMap[key]
-        if (!node) return
-        animate(node)
-        behaviour.runOperation(node, calc, setCalc)
-    }
-
     const animate = contextSafe((node: Mesh) => {
         audio.currentTime = 0
         audio.play();
@@ -90,11 +82,25 @@ const Calculator = () => {
         scene.traverse(node => {
             if (node instanceof Mesh && node.isMesh) node.material = mat;
         })
+    }, [map]);
+
+    useEffect(() => {
+        const press = (e: KeyboardEvent) => {
+            const node = nodeKeyMap[e.key]
+            if (!node) return
+            console.log('test');
+            animate(node)
+            behaviour.runOperation(node, calc, setCalc)
+        }
         window.addEventListener('keydown', press);
         return () => {
             window.removeEventListener('keydown', press);
         }
-    }, [map]);
+    }, [calc, setCalc]);
+
+    // This above effect is neccesary because we have no element to attach the listener to in JSX,
+    // and the document.addEventListener only stores the initial state of calc, so we need to update
+    // it's callback whenever calc changes.
 
     return (
         <>
