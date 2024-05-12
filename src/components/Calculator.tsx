@@ -32,8 +32,8 @@ const Calculator = () => {
     const { contextSafe } = useGSAP({ scope: gsapRef });
     const { camera } = useThree();
     const { nodes, scene } = useGLTF(glb) as unknown as GLTFType;
-
     const map = useTexture(withSymbols);
+
     map.flipY = false;
 
     const behaviour = useMemo(() => new Behaviour(), []);

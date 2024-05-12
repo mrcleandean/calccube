@@ -15,12 +15,10 @@ gsap.registerPlugin(useGSAP);
 
 const CalcCube = () => {
   const { setWidth, setHeight, gsapRef } = useCubeContext();
+  const { contextSafe } = useGSAP({ scope: gsapRef });
   const [loaded, setLoaded] = useState(false);
   const [entered, setEntered] = useState(false);
   const [ref, { width, height }] = useMeasure();
-
-
-  const { contextSafe } = useGSAP({ scope: gsapRef });
 
   useEffect(() => {
     setWidth(width);
