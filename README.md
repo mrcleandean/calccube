@@ -2,6 +2,8 @@
 
 CalcCube is a unique 3D calculator designed to offer an immersive interactive calculation experience through React Three Fiber. It features sleek animations powered by GSAP and leverages the modern tooling provided by Vite for efficient builds. This project is perfect for anyone interested in the intersection of mathematics and 3D graphics.
 
+**Production Deploy @ https://calccube.vercel.app/**
+
 ## Features
 
 - **3D Interactive UI**: Leverages React Three Fiber for rendering dynamic 3D graphics within a web interface.
